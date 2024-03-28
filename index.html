@@ -3,36 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <title>Weather Chart</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
+        integrity="sha512-oHDEc8Xed4hiW6CxD7qjbnI+B07vDdX7hEPTvn9pSZO1bcRqHp8mj9pyr+8RVC2GmtEfI2Bi9Ke9Ass0as+zpg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="./assets/styles/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body>
+
+  <body class="text-rubik">
     <header>
-      <img src="/assets/images/rainbow.png" alt="logo" />
-      <h1>Weather Chart</h1>
-      <nav>
-        <ul>
-          <li><a href="#">Search</a></li>
-          <li><a href="#">Menu</a></li>
-        </ul>
-      </nav>
+      <div class="page-title">
+        <h1 class="logo-text-gradient">Weather Chart</h1>
+      </div>
+
+      <div class="horizontal-container">
+        <div class="horizontal-container">
+          <img src="/assets/images/rainbow.png" alt="logo"/>
+          <place-info>
+            <!-- Founded/default place -->
+            <h2>Tomsk</h2>
+            <h5>
+              Regional capital, Tomsky District (Russia), elevation 117 m <br />
+              56.49771, 84.97437
+            </h5>
+          </place-info>
+        </div>
+        <nav>
+          <button>Search</button>
+          <button>Menu</button>
+        </nav>
+      </div>
     </header>
 
     <main>
       <article>
-        <header>
-          <!-- Founded/default place -->
-          <h2>Tomsk</h2>
-          <h5>
-            Regional capital, Tomsky District (Russia), elevation 117 m <br />
-            56.49771, 84.97437
-          </h5>
-        </header>
         <section>
           <!-- Weather API Service data-->
           <h3>Chart Section</h3>
-          <p>
+          <div class="rectangle">
             Temperature, Precipitation, Humidity etc. diagrams and graphs will
             be placed here
-          </p>
+          </div>
         </section>
         <footer>
           <p>Updated 15:29</p>

@@ -1,0 +1,53 @@
+* {
+  box-sizing: border-box;
+}
+
+.text-rubik {
+  font-family: "Rubik", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.rectangle {
+  width: 300px;
+  height: 200px;
+  border: 2px solid lightblue;
+  border-radius: 5px;
+  text-align: left;
+  padding: 10px;
+}
+
+.logo-text-gradient {
+  text-align: center;
+  background: #fed71d;
+  background: linear-gradient(to left, #fed71d 0%, #ea443a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 10px;
+}
+
+.page-title{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0; /* Удалите отступы по умолчанию */
+}
+
+.horizontal-container {
+  display: flex; /* Используйте Flexbox для расположения элементов */
+  justify-content: space-between; /* Распределите элементы равномерно по горизонтали */
+  align-items: center; /* Выравнивание элементов по центру по вертикали */
+}
+
+button {
+  width: 100px; /* Set the width of the button */
+  height: 30px; /* Set the height of the button */
+  background-color: #ffffff; /* Set the background color of the button */
+  color: #ea443a; /* Set the text color of the button */
+  border: 2px;
+  border-color: #ea443a;
+  border-radius: 3px;
+  cursor: pointer; /* Change the cursor to a pointer when hovering over the button */
+  font-size: 16px; /* Set the font size of the button text */
+  margin-left: 10px; /* Добавьте отступ слева от кнопок для разделения их */
+}
