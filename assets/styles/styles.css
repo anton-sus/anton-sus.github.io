@@ -1,3 +1,4 @@
+/* Common */
 * {
   box-sizing: border-box;
 }
@@ -8,46 +9,69 @@
   font-style: normal;
 }
 
-.rectangle {
-  width: 300px;
-  height: 200px;
-  border: 2px solid lightblue;
+section {
+  margin: 12px;
+}
+
+header {
+  margin: 12px;
+}
+
+button {
+  width: 100px;
+  height: 30px;
+  background-color: #ffffff;
+  color: #000000dc;
+  border: 2px solid #fed81ddc;
   border-radius: 5px;
-  text-align: left;
-  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+button:hover {
+  background-color: #fff9dbdc;
+}
+
+/* Page header */
+.page-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .logo-text-gradient {
   text-align: center;
   background: #fed71d;
   background: linear-gradient(to left, #fed71d 0%, #ea443a 100%);
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   padding: 10px;
 }
 
-.page-title{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0; /* Удалите отступы по умолчанию */
+town-info h2,
+town-info h5 {
+  margin: 0px 10px;
+}
+
+/* Main content */
+.rectangle {
+  width: 100%;
+  height: 200px;
+  border: 2px solid #fed71d;
+  border-radius: 5px;
+  text-align: left;
+  padding: 10px;
 }
 
 .horizontal-container {
-  display: flex; /* Используйте Flexbox для расположения элементов */
-  justify-content: space-between; /* Распределите элементы равномерно по горизонтали */
-  align-items: center; /* Выравнивание элементов по центру по вертикали */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-button {
-  width: 100px; /* Set the width of the button */
-  height: 30px; /* Set the height of the button */
-  background-color: #ffffff; /* Set the background color of the button */
-  color: #ea443a; /* Set the text color of the button */
-  border: 2px;
-  border-color: #ea443a;
-  border-radius: 3px;
-  cursor: pointer; /* Change the cursor to a pointer when hovering over the button */
-  font-size: 16px; /* Set the font size of the button text */
-  margin-left: 10px; /* Добавьте отступ слева от кнопок для разделения их */
+/* Page footer */
+footer {
+  margin: 12px;
 }
