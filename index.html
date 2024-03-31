@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <title>Weather Chart</title>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
@@ -44,19 +46,64 @@
     </header>
 
     <main>
-      <article>
-        <section>
-          <!-- Weather API Service data-->
-          <h3>Chart Section</h3>
-          <div class="rectangle">
-            Temperature, Precipitation, Humidity etc. diagrams and graphs will
-            be placed here
+      <div class="gradient-container">
+        <p>Current conditions</p>
+
+        <div class="conditions-block">
+          <div class="weather-symbol">
+            <img
+              src="./assets/images/conditions/cloudy.png"
+              alt="cloudy"
+              width="40"
+              height="40"
+            />
           </div>
-        </section>
-        <footer>
-          <p>Updated 15:29</p>
-        </footer>
-      </article>
+
+          <div class="current-temperature-block">
+            <img
+              src="./assets/images/temperature-reader.png"
+              alt="temp-logo"
+              width="20"
+              height="20"
+            />
+            <p>23°</p>
+          </div>
+
+          <div class="current-precipitation-block">
+            <img
+              src="./assets/images/umbrella.png"
+              alt="prec-logo"
+              width="20"
+              height="20"
+            />
+            <p>0.5</p>
+            <abbr>mm</abbr>
+          </div>
+
+          <div class="current-wind-block">
+            <img
+              src="./assets/images/wind.png"
+              alt="wind-logo"
+              width="20"
+              height="20"
+            />
+            <p>3</p>
+            <abbr>m/s</abbr>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-section">
+        <!-- Weather API Service data-->
+        <p>Graph</p>
+        <div class="rectangle">
+          Temperature, Precipitation, Humidity etc. diagrams and graphs will be
+          placed here
+        </div>
+      </div>
+      <footer>
+        <p>Data updated 15:29</p>
+      </footer>
     </main>
 
     <footer>
