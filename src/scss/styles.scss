@@ -12,6 +12,12 @@
   font-style: normal;
 }
 
+.horizontal-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 section {
   margin: 12px;
 }
@@ -36,6 +42,17 @@ button {
 button:hover {
   background-color: #fff9dbdc;
 }
+
+// from https://chartscss.org/charts/line/
+#line-example-15 {
+  width: 100%;
+  max-width: 450px;
+  margin: auto;
+}
+#line-example-15 .line {
+  --aspect-ratio: 20 / 9;
+}
+//
 
 /* Page header */
 .page-title {
@@ -72,79 +89,59 @@ town-info h5 {
   }
 }
 
-.gradient-container p {
-  margin: 0;
-  padding: 12px;
-  font-weight: 400;
-  font-size: 16px;
-}
-
-.rectangle {
-  width: 100%;
-  height: 200px;
-  border: 2px solid #fed71d;
-  border-radius: 5px;
-  text-align: left;
-  padding: 10px;
-  color: lightgray;
-}
-
-.horizontal-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.conditions-block {
+.conditions {
   display: flex;
   align-items: baseline;
   gap: 24px;
   margin: 12px;
   padding-left: 20px;
+
+  abbr {
+    font-size: 16px;
+  }
+
+  &__temperature,
+  &__precipitation,
+  &__wind {
+    display: grid;
+    align-items: baseline;
+
+    p {
+      font-size: 22px;
+      padding: 6px;
+    }
+  }
+
+  &__temperature {
+    grid-template-columns: auto auto;
+    p {
+      color: #ea443a;
+    }
+  }
+
+  &__precipitation,
+  &__wind {
+    grid-template-columns: auto auto auto;
+  }
+
+  &__precipitation {
+    color: rgb(24, 90, 161);
+  }
 }
 
-.current-temperature-block {
-  display: grid;
-  grid-template-columns: auto auto;
-  align-items: baseline;
+
+.rectangle {
+  width: 100%;
+  height: auto;
+  border: 2px solid #fed71d;
+  border-radius: 5px;
+  text-align: left;
+  padding: 10px;
+  color: lightgray;
+  background-color: #f6f6f6;
 }
 
-.current-temperature-block p {
-  font-size: 22px;
-  padding: 6px;
-  color: #ea443a;
-}
 
-.current-precipitation-block {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  align-items: baseline;
-  color: rgb(24, 90, 161);
-}
-
-.current-precipitation-block p {
-  font-size: 22px;
-  padding: 6px;
-}
-
-.current-precipitation-block abbr {
-  font-size: 16px;
-}
-
-.current-wind-block {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  align-items: baseline;
-}
-
-.current-wind-block p {
-  font-size: 22px;
-  padding: 6px;
-}
-
-.current-wind-block abbr {
-  font-size: 16px;
-}
 
 .chart-section {
   margin: 12px;
