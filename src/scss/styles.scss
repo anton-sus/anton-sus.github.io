@@ -1,3 +1,6 @@
+@import "./medias.scss";
+@import "./variables.scss";
+
 /* Common */
 * {
   box-sizing: border-box;
@@ -22,7 +25,7 @@ button {
   height: 30px;
   background-color: #ffffff;
   color: #000000dc;
-  border: 2px solid #fed81ddc;
+  border: 2px solid $yellow_color;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
@@ -39,15 +42,15 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-}
 
-.logo-text-gradient {
-  text-align: center;
-  background: #fed71d;
-  background: linear-gradient(to left, #fed71d 0%, #ea443a 100%);
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  padding: 10px;
+  &__logo-text_gradient {
+    text-align: center;
+    background: #fed71d;
+    background: linear-gradient(to left, #fed71d 0%, #ea443a 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 10px;
+  }
 }
 
 town-info h2,
@@ -56,17 +59,20 @@ town-info h5 {
 }
 
 /* Main content */
-.gradient-container {
-  width: 100%; 
-  height: 20vh; 
-  background-image: linear-gradient(
-    to bottom,
-    rgba(97, 152, 207, 0.3),
-    white
-  ); 
+
+.content {
+  &__background_gradient {
+    width: 100%;
+    height: 100px;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(97, 152, 207, 0.3),
+      white
+    );
+  }
 }
 
-.gradient-container p{
+.gradient-container p {
   margin: 0;
   padding: 12px;
   font-weight: 400;
@@ -89,7 +95,7 @@ town-info h5 {
   align-items: center;
 }
 
-.conditions-block{
+.conditions-block {
   display: flex;
   align-items: baseline;
   gap: 24px;
@@ -101,46 +107,46 @@ town-info h5 {
   display: grid;
   grid-template-columns: auto auto;
   align-items: baseline;
- }
+}
 
-.current-temperature-block p{
+.current-temperature-block p {
   font-size: 22px;
   padding: 6px;
   color: #ea443a;
 }
 
-.current-precipitation-block{
+.current-precipitation-block {
   display: grid;
   grid-template-columns: auto auto auto;
-  align-items:baseline;
+  align-items: baseline;
   color: rgb(24, 90, 161);
 }
 
-.current-precipitation-block p{
+.current-precipitation-block p {
   font-size: 22px;
   padding: 6px;
 }
 
-.current-precipitation-block abbr{
+.current-precipitation-block abbr {
   font-size: 16px;
 }
 
-.current-wind-block{
+.current-wind-block {
   display: grid;
   grid-template-columns: auto auto auto;
-  align-items:baseline;
+  align-items: baseline;
 }
 
-.current-wind-block p{
+.current-wind-block p {
   font-size: 22px;
   padding: 6px;
 }
 
-.current-wind-block abbr{
+.current-wind-block abbr {
   font-size: 16px;
 }
 
-.chart-section{
+.chart-section {
   margin: 12px;
 }
 
