@@ -7,6 +7,7 @@ const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const sourcemaps = require('gulp-sourcemaps');
 
+
 // Таск компиляции SASS в CSS
 function buildSass() {
     return src('src/scss/**/*.scss')
