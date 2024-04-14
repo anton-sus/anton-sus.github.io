@@ -67,6 +67,15 @@ button:hover {
 
   &__search-input{
     display: none;
+    color: grey;
+    height: 30px;
+    min-width: 300px;
+    border: 2px solid grey;
+    border-radius: 5px;
+  }
+
+  &__search-input:focus{
+    border: grey; // цвет не применяется
   }
 }
 
