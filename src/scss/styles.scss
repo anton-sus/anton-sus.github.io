@@ -35,6 +35,7 @@ button:hover {
   background-color: $color-button-hover-background;
 }
 
+
 /* Page header */
 .page-title {
   display: flex;
@@ -62,6 +63,10 @@ button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  &__search-input{
+    display: none;
   }
 }
 

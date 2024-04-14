@@ -64,7 +64,10 @@
         </div>
 
         <nav class="page-title__navigation">
-          <button>Search</button>
+          <div id="searchInput" class="page-title__search-input">
+            <input type="text" > 
+          </div>
+          <button id="searchButton">Search</button>
           <button>Menu</button>
           <!-- Semantic UI component -->
           <div class="ui vertical animated button" tabindex="0">
@@ -279,7 +282,7 @@
     crossorigin="anonymous"
   ></script>
 
-  <!-- Semantic UI не подключиля тут. хотя в Live Server'е работает  -->
+  <!-- Semantic UI тут не подключиля, хотя через Live Server работает  -->
   <!-- <script src="../node_modules/semantic-ui-css/semantic.min.js"></script> -->
 
   <!-- не совсем понятно, как bundle.js подключается -->
