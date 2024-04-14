@@ -39,11 +39,11 @@
     />
 
     <!-- Semantic UI не подключиля -->
-    <link
+    <!-- <link
       rel="stylesheet"
       type="text/css"
-      href="..//node_modules/semantic-ui-css/semantic.css"
-    />
+      href="../node_modules/semantic-ui-css/semantic.min.css"
+    /> -->
   </head>
 
   <body class="font-rubik">
@@ -55,7 +55,7 @@
 
       <div class="page-title__place">
         <div class="page-title__place">
-          <img src="/assets/images/rainbow.png" alt="logo" />
+          <img src="./assets/images/rainbow.png" alt="logo" />
           <div>
             <!-- Founded/default place -->
             <h2>Tomsk</h2>
@@ -68,7 +68,7 @@
           <button>Menu</button>
           <!-- Semantic UI component -->
           <div class="ui vertical animated button" tabindex="0">
-            <div class="hidden content">SamlpeButton</div>
+            <div class="hidden content">Button</div>
             <div class="visible content">
               <i class="shop icon"></i>
             </div>
@@ -278,5 +278,10 @@
     integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
     crossorigin="anonymous"
   ></script>
-  <script src="..//node_modules/semantic-ui-css/semantic.min.js"></script>
+
+  <!-- Semantic UI не подключиля тут. хотя в Live Server'е работает  -->
+  <!-- <script src="../node_modules/semantic-ui-css/semantic.min.js"></script> -->
+
+  <!-- не совсем понятно, как bundle.js подключается -->
+  <script src="./js/index.js"></script>
 </html>

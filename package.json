@@ -26,12 +26,15 @@
   "devDependencies": {
     "autoprefixer": "^10.4.19",
     "browser-sync": "^3.0.2",
+    "chokidar": "^3.6.0",
     "cssnano": "^6.1.2",
     "gulp": "^5.0.0",
     "gulp-clean": "^0.4.0",
+    "gulp-concat": "^2.6.1",
     "gulp-postcss": "^10.0.0",
     "gulp-sass": "^5.1.0",
-    "gulp-sourcemaps": "^3.0.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2",
     "postcss": "^8.4.38",
     "sass": "^1.74.1"
   },
