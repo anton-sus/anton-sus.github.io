@@ -43,7 +43,7 @@ button:hover {
   align-items: center;
 
   &__logo-text_gradient {
-    width: fit-content;
+    // width: fit-content;
     text-align: center;
     background: #fed71d;
     background: linear-gradient(to left, #fed71d 0%, #ea443a 100%);
@@ -75,7 +75,7 @@ button:hover {
   }
 
   &__search-input:focus{
-    border: grey; // цвет не применяется
+    outline-color: grey;
   }
 }
 

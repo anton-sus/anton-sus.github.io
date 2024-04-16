@@ -1,9 +1,3 @@
-// weather data 
-let url = 'http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=36783e67c693e40318a73ec3be962cfb';
-fetch(url)
-.then((response) => response.json())
-.then((json) => console.log(json));
-
 document.addEventListener("DOMContentLoaded", function () {
   const searchInput = document.getElementById("searchInput");
   const searchButton = document.getElementById("searchButton");
