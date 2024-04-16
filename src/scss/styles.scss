@@ -1,0 +1,208 @@
+@import "./medias.scss";
+@import "./variables.scss";
+
+/* Common */
+* {
+  box-sizing: border-box;
+}
+
+.font-rubik {
+  font-family: "Rubik", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+section {
+  margin: 12px;
+}
+
+header {
+  margin: 12px;
+}
+
+button {
+  min-width: 100px;
+  height: 30px;
+  background-color: $color-background;
+  color: #000000dc;
+  border: 2px solid $color-contours;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: $color-button-hover-background;
+}
+
+
+/* Page header */
+.page-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__logo-text_gradient {
+    // width: fit-content;
+    text-align: center;
+    background: #fed71d;
+    background: linear-gradient(to left, #fed71d 0%, #ea443a 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 10px;
+  }
+
+  &__navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__place {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__search-input{
+    display: none;
+    color: grey;
+    height: 30px;
+    min-width: 300px;
+    border: 2px solid grey;
+    border-radius: 5px;
+  }
+
+  &__search-input:focus{
+    outline-color: grey;
+  }
+}
+
+h2,
+h5 {
+  margin: 0px 10px;
+}
+
+/* Main content */
+
+.content {
+  &__background_gradient {
+    width: 100%;
+    min-height: 100px;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(97, 152, 207, 0.3),
+      white
+    );
+  }
+
+  p {
+    margin: 0px;
+    padding: 20px;
+  }
+
+  &__rectangle {
+    width: auto;
+    height: auto;
+    border: 2px solid #fed71d;
+    border-radius: 5px;
+    text-align: left;
+    padding: 0px;
+    margin: 0 20px;
+    color: lightgray;
+    background-color: #f6f6f6;
+  }
+
+  &__chart-caption {
+    position: absolute;
+    display: table-caption;
+    caption-side: left;
+  }
+}
+
+.conditions {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  margin: 0px;
+  padding-left: 20px;
+
+  abbr {
+    font-size: 16px;
+  }
+
+  &__temperature,
+  &__precipitation,
+  &__wind {
+    display: grid;
+    align-items: baseline;
+
+    p {
+      font-size: 22px;
+      padding: 6px;
+    }
+  }
+
+  &__temperature {
+    grid-template-columns: auto auto;
+    p {
+      color: #ea443a;
+      padding: 0;
+    }
+  }
+
+  &__precipitation,
+  &__wind {
+    grid-template-columns: auto auto auto;
+  }
+
+  &__precipitation {
+    color: rgb(24, 90, 161);
+  }
+}
+
+// Charts. From https://chartscss.org/charts/line/
+#line-example-15 {
+  width: 100%;
+  max-width: 450px;
+  margin: auto;
+}
+#line-example-15 .line {
+  --aspect-ratio: 20 / 9;
+}
+
+/* Page footer */
+.page-footer {
+  margin: 12px;
+  padding-top: 12px;
+  padding-bottom: 32px;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) repeat(2, 15%);
+    grid-template-rows: 16px repeat(2, 1fr);
+    grid-gap: 12px;
+    grid-template-areas:
+      "powered .  apps links"
+      "logo    .  apps links"
+      "editor  .    .    .";
+  }
+
+  &__logos {
+    grid-area: logo;
+  }
+
+  &__editor {
+    grid-area: editor;
+  }
+
+  &__links {
+    grid-area: links;
+  }
+
+  &__apps {
+    grid-area: apps;
+  }
+
+}
