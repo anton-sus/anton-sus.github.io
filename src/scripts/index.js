@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const searchInput = document.getElementById("searchInput");
-  const searchButton = document.getElementById("searchButton");
+  let searchInput = document.getElementById("searchInput");
+  let searchButton = document.getElementById("searchButton");
+
+  let cityTitle = document.getElementById("cityTitle");
+  let cityInfo = document.getElementById("cityInfo");
 
   searchInput.style.display = "none";
 
@@ -26,12 +29,26 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // получение значения из input
+  // получение значения из searchInput, поиск координат, запрос weatherData
   searchInput.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
-      console.log(searchInput.value);
-
-      localStorage.setItem("searches", searchInput.value);
+      let cityName = searchInput.value;
+      console.log(cityName);
+  
+      fetchCityData(cityName)
+        .then((coords) => {
+          console.log(coords.lat, coords.lon);
+          let cityDescription =  `${coords.state} (${coords.country}) - ${coords.lat}°N, ${coords.lat}30°E`;
+          cityTitle.innerHTML = coords.foundCityName;
+          cityInfo.innerHTML = cityDescription;
+          return fetchWeatherData(coords.lat, coords.lon);
+        })
+        .then((weatherData) => {
+          console.log(weatherData);
+          // Сохранение cityName в localStorage
+          localStorage.setItem("searches", JSON.stringify(cityName));
+        })
+        .catch((error) => console.error("Ошибка fetchCityData:", error));
     }
   });
 });
