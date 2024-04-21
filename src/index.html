@@ -27,7 +27,13 @@
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/charts.css/dist/charts.min.css"
-    />
+      />
+      
+      <!-- Semantic UI временно отключено -->
+      <!-- <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css"
+    /> -->
 
     <!-- Google Fonts -->
     <link rel="stylesheet" href="./css/styles.css" />
@@ -38,18 +44,13 @@
       rel="stylesheet"
     />
 
-    <!-- Semantic UI -->
-    <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css"
-  />
 
   </head>
 
   <body class="font-rubik">
     <header>
         <div class="page-title__logo-text_gradient">
-          <!-- ошибка. надо расположить по центру страницы -->
+          <!-- ошибка. надо расположить по центру так, чтобы градиент не растягивался по ширине страницы -->
           <h1>Weather Chart</h1>
         </div>
 
@@ -67,13 +68,6 @@
           <input id="searchInput" class="page-title__search-input" type="text" > 
           <button id="searchButton">Search</button>
           <button>Menu</button>
-          <!-- Semantic UI component -->
-          <div class="ui vertical animated button" tabindex="0">
-            <div class="hidden content">Button</div>
-            <div class="visible content">
-              <i class="shop icon"></i>
-            </div>
-          </div>
         </nav>
       </div>
     </header>

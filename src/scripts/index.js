@@ -36,15 +36,18 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log(cityName);
   
       fetchCityData(cityName)
-        .then((coords) => {
-          console.log(coords.lat, coords.lon);
-          let cityDescription =  `${coords.state} (${coords.country}) - ${coords.lat}°N, ${coords.lat}30°E`;
-          cityTitle.innerHTML = coords.foundCityName;
+        .then((cityData) => {
+          console.log(cityData.lat, cityData.lon);
+          let cityDescription =  `${cityData.state} (${cityData.country}) - ${cityData.lat}°N, ${cityData.lat}30°E`;
+          cityTitle.innerHTML = cityData.foundCityName;
           cityInfo.innerHTML = cityDescription;
-          return fetchWeatherData(coords.lat, coords.lon);
+          
+          searchInput.style.display = "none"
+          
+          return fetchWeatherData(cityData.lat, cityData.lon);
         })
         .then((weatherData) => {
-          console.log(weatherData);
+          console.log(weatherData); // ошибка undefined
           // Сохранение cityName в localStorage
           localStorage.setItem("searches", JSON.stringify(cityName));
         })
