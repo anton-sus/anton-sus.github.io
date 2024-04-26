@@ -39,35 +39,31 @@
     <link rel="stylesheet" href="./css/styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
-      rel="stylesheet"
-    />
-
-
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet" />
   </head>
 
-  <body class="font-rubik">
-    <header>
+  <body class="font-rubik background_gradient">
+
+      <header>
         <div class="page-title__logo-text_gradient">
-          <!-- ошибка. надо расположить по центру так, чтобы градиент не растягивался по ширине страницы -->
           <h1>Weather Chart</h1>
         </div>
-
-      <div class="page-title__place">
+        
         <div class="page-title__place">
-          <img src="./assets/images/rainbow.png" alt="logo" />
+          <div class="page-title__place">
+            <img src="./assets/images/rainbow.png"
+             alt="logo"
+             height="36" />
           <div>
             <!-- Founded/default place -->
-            <h2 id="cityTitle">City</h2>
-            <h5 id="cityInfo">Regional capital, District (RU) - elevation 117 m</h5>
+            <h2 id="city-title">City</h2>
+            <h5 id="city-info">District (Country): coordinates</h5>
           </div>
         </div>
 
         <nav class="page-title__navigation">
-          <input id="searchInput" class="page-title__search-input" type="text" > 
-          <button id="searchButton">Search</button>
-          <button>Menu</button>
+          <input id="search-input" class="page-title__search-input" type="text" > 
+          <button id="search-button">Search</button>
         </nav>
       </div>
     </header>
@@ -93,7 +89,7 @@
               width="20"
               height="20"
             />
-            <p>23°</p>
+            <p id="conditions-temp"></p>
           </div>
 
           <div class="conditions__precipitation">
@@ -114,7 +110,7 @@
               width="20"
               height="20"
             />
-            <p>3</p>
+            <p id="conditions-wind-speed">3</p>
             <abbr>m/s</abbr>
           </div>
         </div>
@@ -125,8 +121,6 @@
 
         <div class="content__rectangle">
           <p>
-            <!-- Weather API data. Предполагается использовать Chart.js с https://developer.accuweather.com/apis
-               или https://openweathermap.org/api/-->
             The sample will be replaced with Weather API temperature,
             precipitation, humidity data.
           </p>
@@ -135,7 +129,6 @@
           <div id="line-example-15">
             <table class="charts-css line multiple hide-data show-labels">
               <caption class="content__chart-caption">
-                <!-- ошибка в классе? Сейчас не критично, но caption не отображается -->
                 7th April
               </caption>
               <thead>
@@ -261,6 +254,7 @@
         </div>
       </div>
     </footer>
+
   </body>
 
   <script
@@ -274,7 +268,6 @@
     crossorigin="anonymous"
   ></script>
 
-  <!-- Semantic UI тут не подключиля, хотя через Live Server работает  -->
   <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
 
   <script src="./js/bundle.js"></script>
