@@ -7,6 +7,7 @@ let cityInfo = document.getElementById("city-info");
 let temperature = document.getElementById("conditions-temp");
 let windSpeed = document.getElementById("conditions-wind-speed");
 
+// TODO: restore from storage
 const defaultCity = "London";
 getDataForCity(defaultCity);
 
@@ -72,5 +73,9 @@ function getDataForCity(cityName) {
       // TODO: restore cityName
       localStorage.setItem("searches", JSON.stringify(cityName));
     })
-    .catch((error) => console.error("Ошибка fetchCityData:", error));
+    .catch((error) => {
+    console.error("Ошибка fetchCityData:", error);
+    cityTitle.innerHTML = "City";
+    cityInfo.innerHTML = "District (Country): coordinates";
+  });
 }
