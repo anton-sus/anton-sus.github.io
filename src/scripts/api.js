@@ -1,32 +1,45 @@
-// weather data 
-const apiKey = '36783e67c693e40318a73ec3be962cfb';
-const url = 'http://api.openweathermap.org/data/2.5/forecast?id=1489425&appid='+apiKey;
-fetch(url)
-.then((response) => response.json())
-.then((json) => console.log(json));
+const apiKey = "36783e67c693e40318a73ec3be962cfb";
+const limit = 1; // количество найденных городов
 
-// const stationId = 'FLZ017';
-// const apiUrl = `https://api.weather.gov/stations/${stationId}/observations/latest`;
+// координаты города
+function fetchCityData(cityName) {
+  let getCoordsUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=${limit}&appid=${apiKey}`;
+  return fetch(getCoordsUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.length > 0) {
+        // console.log(data);
+        return {
+          lat: data[0].lat,
+          lon: data[0].lon,
+          name: data[0].name,
+          state: data[0].state,
+          country: data[0].country
+        };
+      } else {
+        throw new Error("Не найдено местоположение для указанного города");
+      }
+    })
+    .catch((error) => console.error("Ошибка:", error));
+}
 
-// const headers = new Headers({
-//   'User-Agent': 'EduApp/1.0', 
-//   'Accept': 'application/ld+json'
-//  });
- 
+// данные погоды по координатам
+function fetchWeatherData(lat, lon) {
+  const url = `https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${lat}&lon=${lon}&appid=${apiKey}`;
+  return fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      return data;
+    });
+}
 
-// fetch(apiUrl, {headers})
-//  .then(response => {
-//     if (!response.ok) {
-//       throw new Error('Network response was not ok');
-//     }
-//     return response.json();
-//  })
-//  .then(data => {
-//     console.log(data);
-//     // Here you can access the data you need, for example:
-//     console.log(`Temperature: ${data.properties.temperature.value}`);
-//     console.log(`Wind Speed: ${data.properties.windSpeed.value}`);
-//  })
-//  .catch(error => {
-//     console.error('There was a problem with your fetch operation:', error);
-//  });
+// прогноз
+function fetchForecastData(lat, lon) {
+  const url = `http://api.openweathermap.org/data/2.5/forecast?units=metric&lat=${lat}&lon=${lon}&appid=${apiKey}`;
+  return fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      return data;
+    });
+}
+
