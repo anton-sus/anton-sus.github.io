@@ -11,6 +11,7 @@ let windSpeed = document.getElementById("conditions-wind-speed");
 const defaultCity = "London";
 getDataForCity(defaultCity);
 
+
 document.addEventListener("DOMContentLoaded", function () {
   searchInput.style.display = "none";
   // показ-скрытие поля searchInput
