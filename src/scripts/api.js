@@ -8,7 +8,7 @@ function fetchCityData(cityName) {
     .then((response) => response.json())
     .then((data) => {
       if (data.length > 0) {
-        console.log(data);
+        // console.log(data);
         return {
           lat: data[0].lat,
           lon: data[0].lon,
@@ -32,3 +32,14 @@ function fetchWeatherData(lat, lon) {
       return data;
     });
 }
+
+// прогноз
+function fetchForecastData(lat, lon) {
+  const url = `http://api.openweathermap.org/data/2.5/forecast?units=metric&lat=${lat}&lon=${lon}&appid=${apiKey}`;
+  return fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      return data;
+    });
+}
+
