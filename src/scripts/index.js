@@ -7,8 +7,8 @@ let cityInfo = document.getElementById("city-info");
 let temperature = document.getElementById("conditions-temp");
 let windSpeed = document.getElementById("conditions-wind-speed");
 
-const ctx = document.getElementById("temperatureChart");
-const currentDateElement = document.getElementById("current-date");
+let currentDateElement = document.getElementById("current-date");
+let temperatureChartInstance = null;
 
 // TODO: restore from storage
 const defaultCity = "London";
@@ -88,11 +88,16 @@ function getDataForCity(cityName) {
       console.log(forecastData);
       setDate();
 
-      const temperatureData = getTemperature(forecastData);
+      if (temperatureChartInstance) {
+        temperatureChartInstance.destroy();
+      }
+
+      let ctx = document.getElementById("temperatureChart");
+
+      let temperatureData = getTemperature(forecastData);
 
       // график
-      // TODO: добавить сглаживание
-      const temperatureChart = new Chart(ctx, {
+      temperatureChartInstance = new Chart(ctx, {
         type: "line",
         data: {
           labels: temperatureData.timeLabels,
@@ -103,6 +108,7 @@ function getDataForCity(cityName) {
               borderColor: "rgb(24, 90, 161)",
               borderWidth: 2,
               pointRadius: 0,
+              lineTension: .25,
             },
           ],
         },
