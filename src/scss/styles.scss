@@ -112,7 +112,7 @@ button:hover {
   &__search-input:focus {
     outline-color: grey;
     background-color: rgb(255, 255, 255);
-    width: 400px;
+    width: 410px;
 }}
 
 h2,
@@ -207,7 +207,7 @@ h5 {
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr) repeat(2, 15%);
+    grid-template-columns: repeat(2, 2fr) repeat(1, 17%);
     grid-template-rows: 16px repeat(2, 1fr);
     grid-gap: 12px;
     grid-template-areas:
