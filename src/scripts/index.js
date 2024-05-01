@@ -111,7 +111,7 @@ function createChart(dataForChart, ctx) {
   let pressureDataset = {
     label: "Pressure (hPa)",
     data: dataForChart.pressures,
-    borderColor: "rgb(24, 90, 161)",
+    borderColor: "rgb(100, 100, 100)",
     borderWidth: 2,
     pointRadius: 0,
     lineTension: 0.4,
@@ -122,6 +122,23 @@ function createChart(dataForChart, ctx) {
 
   temperatureChartInstance = new Chart(ctx, {
     type: "line",
+    plugins: [{
+      afterLayout: chart => {
+        let ctx = chart.ctx;
+        ctx.save();
+        let yAxis = chart.scales["temperature-axis"];
+        let yThreshold = yAxis.getPixelForValue(0);
+        let gradient = ctx.createLinearGradient(0, yAxis.top, 0, yAxis.bottom);
+        gradient.addColorStop(0, 'red');
+        let offset = 1 / yAxis.bottom * yThreshold;
+        gradient.addColorStop(offset, 'darkviolet');
+        gradient.addColorStop(offset, 'darkviolet');
+        gradient.addColorStop(1, 'blue');
+        chart.data.datasets[0].borderColor = gradient;
+        ctx.restore();
+      }
+    }],
+
     data: {
       labels: dataForChart.timeLabels,
       datasets: datasets,
@@ -133,29 +150,51 @@ function createChart(dataForChart, ctx) {
           display: false
         },
         "pressure-axis": {
+          title: {
+            display: true,
+            text: 'hPa',
+          },
           type: "linear",
           beginAtZero: false,
           max: 1040,
           position: "right",
           ticks: {
             stepSize: 10,
-            color: "rgb(24, 90, 161)",
+            color: "rgb(100, 100, 100)",
           }
         
         },
         "temperature-axis":{
+          title: {
+            display: true,
+            text: '°C',
+          },
           beginAtZero: true,
           position: "left",
           ticks: {
             stepSize: 2,
-            color: "rgb(186, 53, 46)",
-          }
+             color: function(tick) {
+              if (tick.tick.value > 0) {
+                return "rgb(186, 53, 46)";
+              } else if (tick.tick.value <= 0) {
+                return "rgb(100, 120, 255)";
+              }
+              console.log(tick.tick.value);
+              return '#000000';
+            },
+          },
+          grid: {
+            
+          },
         },
         x: {
-          grid: {
-            // TODO: add days
+          
+          time: {
+            tooltipFormat: 'DD T'
           },
-         
+           ticks : {color: function(e) {
+            console.log(e);}
+          },
         },
       },
       plugins: {
