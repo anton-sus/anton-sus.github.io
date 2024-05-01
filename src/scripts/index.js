@@ -8,7 +8,11 @@ let temperature = document.getElementById("conditions-temp");
 let windSpeed = document.getElementById("conditions-wind-speed");
 
 let currentDateElement = document.getElementById("current-date");
-let temperatureChartInstance = null;
+
+let temperatureChartInstance;
+let latitude;
+let longitude;
+let jsonWheatherData;
 
 // TODO: restore from storage
 const defaultCity = "London";
@@ -50,10 +54,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-let latitude;
-let longitude;
-let jsonWheatherData;
-
 function getDataForCity(cityName) {
   fetchCityData(cityName)
     .then((cityData) => {
@@ -68,12 +68,8 @@ function getDataForCity(cityName) {
 
       searchInput.style.display = "none";
       return fetchWeatherData(cityData.lat, cityData.lon);
-      // return fetchWeatherData(cityData.lat, cityData.lon);
     })
     .then((wData) => {
-      // console.log(wData.main.temp);
-      // console.log(wData);
-
       // передаём в разметку
       temperature.innerHTML = Math.round(wData.main.temp) + "°";
       windSpeed.innerHTML = Math.round(wData.wind.speed);
@@ -93,54 +89,103 @@ function getDataForCity(cityName) {
       }
 
       let ctx = document.getElementById("temperatureChart");
-
-      let temperatureData = getTemperature(forecastData);
-
-      // график
-      temperatureChartInstance = new Chart(ctx, {
-        type: "line",
-        data: {
-          labels: temperatureData.timeLabels,
-          datasets: [
-            {
-              label: "Temperature (°C)",
-              data: temperatureData.temperatures,
-              borderColor: "rgb(24, 90, 161)",
-              borderWidth: 2,
-              pointRadius: 0,
-              lineTension: 0.4,
-            },
-          ],
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: false,
-            },
-          },
-        },
-      });
+      let dataForChart = getDataForChart(forecastData);
+      createChart(dataForChart, ctx);
     })
     .catch((error) => {
       console.error("Ошибка:", error);
     });
 }
 
-function getTemperature(jsonData) {
+function createChart(dataForChart, ctx) {
+  let temperatureDataset = {
+    label: "Temperature (°C)",
+    data: dataForChart.temperatures,
+    borderColor: "rgb(186, 53, 46)",
+    borderWidth: 2,
+    pointRadius: 0,
+    lineTension: 0.4,
+    yAxisID: "temperature-axis",
+  };
+
+  let pressureDataset = {
+    label: "Pressure (hPa)",
+    data: dataForChart.pressures,
+    borderColor: "rgb(24, 90, 161)",
+    borderWidth: 2,
+    pointRadius: 0,
+    lineTension: 0.4,
+    yAxisID: "pressure-axis",
+  };
+
+  let datasets = [temperatureDataset, pressureDataset];
+
+  temperatureChartInstance = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: dataForChart.timeLabels,
+      datasets: datasets,
+    },
+    options: {
+      scales: {
+        y:
+        {
+          display: false
+        },
+        "pressure-axis": {
+          type: "linear",
+          beginAtZero: false,
+          max: 1040,
+          position: "right",
+          ticks: {
+            stepSize: 10,
+            color: "rgb(24, 90, 161)",
+          }
+        
+        },
+        "temperature-axis":{
+          beginAtZero: true,
+          position: "left",
+          ticks: {
+            stepSize: 2,
+            color: "rgb(186, 53, 46)",
+          }
+        },
+        x: {
+          grid: {
+            // TODO: add days
+          },
+         
+        },
+      },
+      plugins: {
+        legend: {
+          display: false,
+        },
+      },
+    },
+  });
+
+}
+
+function getDataForChart(jsonData) {
   const weatherList = jsonData.list;
   const timeLabels = [];
   const temperatures = [];
+  const pressures = [];
 
   weatherList.forEach((weather) => {
     const time = new Date(weather.dt_txt);
     const temperature = weather.main.temp;
+    const pressure = weather.main.pressure;
 
     var dateOptions = { hour12: false };
     timeLabels.push(time.toLocaleTimeString("ru-RU", dateOptions));
     temperatures.push(temperature);
+    pressures.push(pressure);
   });
 
-  return { timeLabels, temperatures };
+  return { timeLabels, temperatures, pressures };
 }
 
 function setDate() {
