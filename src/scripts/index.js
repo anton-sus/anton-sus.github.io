@@ -108,7 +108,7 @@ function getDataForCity(cityName) {
               borderColor: "rgb(24, 90, 161)",
               borderWidth: 2,
               pointRadius: 0,
-              lineTension: .25,
+              lineTension: 0.4,
             },
           ],
         },
@@ -135,7 +135,8 @@ function getTemperature(jsonData) {
     const time = new Date(weather.dt_txt);
     const temperature = weather.main.temp;
 
-    timeLabels.push(time.toLocaleTimeString());
+    var dateOptions = { hour12: false };
+    timeLabels.push(time.toLocaleTimeString("ru-RU", dateOptions));
     temperatures.push(temperature);
   });
 
