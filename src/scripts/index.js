@@ -82,7 +82,7 @@ function getDataForCity(cityName) {
     })
     .then((forecastData) => {
       console.log(forecastData);
-      setDate();
+      setCurrentDate();
 
       if (temperatureChartInstance) {
         temperatureChartInstance.destroy();
@@ -106,6 +106,7 @@ function createChart(dataForChart, ctx) {
     pointRadius: 0,
     lineTension: 0.4,
     yAxisID: "temperature-axis",
+    xAxisID: "time-axis",
   };
 
   let pressureDataset = {
@@ -122,22 +123,29 @@ function createChart(dataForChart, ctx) {
 
   temperatureChartInstance = new Chart(ctx, {
     type: "line",
-    plugins: [{
-      afterLayout: chart => {
-        let ctx = chart.ctx;
-        ctx.save();
-        let yAxis = chart.scales["temperature-axis"];
-        let yThreshold = yAxis.getPixelForValue(0);
-        let gradient = ctx.createLinearGradient(0, yAxis.top, 0, yAxis.bottom);
-        gradient.addColorStop(0, 'red');
-        let offset = 1 / yAxis.bottom * yThreshold;
-        gradient.addColorStop(offset, 'darkviolet');
-        gradient.addColorStop(offset, 'darkviolet');
-        gradient.addColorStop(1, 'blue');
-        chart.data.datasets[0].borderColor = gradient;
-        ctx.restore();
-      }
-    }],
+    plugins: [
+      {
+        afterLayout: (chart) => {
+          let ctx = chart.ctx;
+          ctx.save();
+          let yAxis = chart.scales["temperature-axis"];
+          let yThreshold = yAxis.getPixelForValue(0);
+          let gradient = ctx.createLinearGradient(
+            0,
+            yAxis.top,
+            0,
+            yAxis.bottom
+          );
+          gradient.addColorStop(0, "red");
+          let offset = (1 / yAxis.bottom) * yThreshold;
+          gradient.addColorStop(offset, "darkviolet");
+          gradient.addColorStop(offset, "darkviolet");
+          gradient.addColorStop(1, "blue");
+          chart.data.datasets[0].borderColor = gradient;
+          ctx.restore();
+        },
+      },
+    ],
 
     data: {
       labels: dataForChart.timeLabels,
@@ -145,15 +153,27 @@ function createChart(dataForChart, ctx) {
     },
     options: {
       scales: {
-        y:
-        {
-          display: false
+        x: {
+          display: false,
+        },
+        xAxes: {
+          display: true,
+          ticks: {
+            maxTicksLimit: 5,
+          },
+        },
+        "time-axis": {
+          display: false,
+        },
+
+        y: {
+          display: false,
         },
         "pressure-axis": {
           title: {
             display: true,
-            text: 'hPa',
-            align: "end"
+            text: "hPa",
+            align: "end",
           },
           type: "linear",
           beginAtZero: false,
@@ -163,41 +183,30 @@ function createChart(dataForChart, ctx) {
             stepSize: 10,
             color: "rgb(100, 100, 100)",
           },
-
-          x: {
-            ticks: {
-              callback: function(value, index, values) {
-                return index % 4 === 0 ? value : ''; // не работает
-              }
-            }
-          },
-
         },
-        "temperature-axis":{
+
+        "temperature-axis": {
           title: {
             display: true,
-            text: '°C',
+            text: "°C",
             align: "end",
           },
           beginAtZero: true,
           position: "left",
           ticks: {
             stepSize: 2,
-             color: function(tick) {
+            color: function (tick) {
               if (tick.tick.value > 0) {
                 return "rgb(186, 53, 46)";
               } else if (tick.tick.value <= 0) {
                 return "rgb(100, 120, 255)";
               }
               console.log(tick.tick.value);
-              return '#000000';
+              return "#000000";
             },
           },
-          grid: {
-            
-          },
+          grid: {},
         },
-        
       },
       plugins: {
         legend: {
@@ -206,7 +215,6 @@ function createChart(dataForChart, ctx) {
       },
     },
   });
-
 }
 
 function getDataForChart(jsonData) {
@@ -217,7 +225,7 @@ function getDataForChart(jsonData) {
 
   weatherList.forEach((weather) => {
     const date = moment(weather.dt_txt, "YYYY-MM-DD HH:mm:ss");
-    const formattedDate = date.format('DD MMM HH:mm');
+    const formattedDate = date.format("DD MMM");
 
     const temperature = weather.main.temp;
     const pressure = weather.main.pressure;
@@ -225,12 +233,12 @@ function getDataForChart(jsonData) {
     timeLabels.push(formattedDate);
     temperatures.push(temperature);
     pressures.push(pressure);
- });
- 
+  });
+
   return { timeLabels, temperatures, pressures };
 }
 
-function setDate() {
+function setCurrentDate() {
   const currentDate = new Date();
 
   const formattedDate = currentDate.toLocaleDateString("en-US", {
