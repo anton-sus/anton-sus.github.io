@@ -153,6 +153,7 @@ function createChart(dataForChart, ctx) {
           title: {
             display: true,
             text: 'hPa',
+            align: "end"
           },
           type: "linear",
           beginAtZero: false,
@@ -161,13 +162,22 @@ function createChart(dataForChart, ctx) {
           ticks: {
             stepSize: 10,
             color: "rgb(100, 100, 100)",
-          }
-        
+          },
+
+          x: {
+            ticks: {
+              callback: function(value, index, values) {
+                return index % 4 === 0 ? value : ''; // не работает
+              }
+            }
+          },
+
         },
         "temperature-axis":{
           title: {
             display: true,
             text: '°C',
+            align: "end",
           },
           beginAtZero: true,
           position: "left",
@@ -187,15 +197,7 @@ function createChart(dataForChart, ctx) {
             
           },
         },
-        x: {
-          
-          time: {
-            tooltipFormat: 'DD T'
-          },
-           ticks : {color: function(e) {
-            console.log(e);}
-          },
-        },
+        
       },
       plugins: {
         legend: {
@@ -214,16 +216,17 @@ function getDataForChart(jsonData) {
   const pressures = [];
 
   weatherList.forEach((weather) => {
-    const time = new Date(weather.dt_txt);
+    const date = moment(weather.dt_txt, "YYYY-MM-DD HH:mm:ss");
+    const formattedDate = date.format('DD MMM HH:mm');
+
     const temperature = weather.main.temp;
     const pressure = weather.main.pressure;
 
-    var dateOptions = { hour12: false };
-    timeLabels.push(time.toLocaleTimeString("ru-RU", dateOptions));
+    timeLabels.push(formattedDate);
     temperatures.push(temperature);
     pressures.push(pressure);
-  });
-
+ });
+ 
   return { timeLabels, temperatures, pressures };
 }
 
