@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Weather Chart</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Normalize -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
+      integrity="sha512-oHDEc8Xed4hiW6CxD7qjbnI+B07vDdX7hEPTvn9pSZO1bcRqHp8mj9pyr+8RVC2GmtEfI2Bi9Ke9Ass0as+zpg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Diagrams -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/charts.css/dist/charts.min.css"
+    />
+    
+    <!-- Moment.js -->
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/min/moment.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="font-rubik background_gradient main_background">
+    <header>
+      <div class="page-title__logo-text">
+        <!-- Not nessesary tite -->
+        <!-- <h1>Weather Data Chart</h1> -->
+      </div>
+
+      <div class="page-title__place">
+        <div class="page-title__place">
+          <img src="./assets/images/rainbow.png" alt="logo" height="36" />
+          <div>
+            <!-- Найденный город -->
+            <h2 id="city-title"></h2>
+            <!-- TODO: выводить это только при ошибке запроса -->
+            <h5 id="city-info"></h5>
+          </div>
+        </div>
+
+        <nav class="page-title__navigation">
+          <input
+            id="search-input"
+            class="page-title__search-input"
+            type="text"
+          />
+          <button id="search-button" class="ui secondary button">Search</button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="content__background_gradient">
+        <p>Current conditions</p>
+
+        <div class="conditions rectangle">
+          <div class="weather-symbol">
+            <img
+              src="./assets/images/conditions/cloudy.png"
+              alt="cloudy"
+              width="40"
+              height="40"
+            />
+          </div>
+
+          <div class="conditions__temperature">
+            <img
+              src="./assets/images/temperature-reader.png"
+              alt="temp-logo"
+              width="20"
+              height="20"
+            />
+            <p id="conditions-temp"></p>
+          </div>
+
+          <div class="conditions__precipitation">
+            <img
+              src="./assets/images/umbrella.png"
+              alt="prec-logo"
+              width="20"
+              height="20"
+            />
+            <p>0.5</p>
+            <abbr>mm</abbr>
+          </div>
+
+          <div class="conditions__wind">
+            <img
+              src="./assets/images/wind.png"
+              alt="wind-logo"
+              width="20"
+              height="20"
+            />
+            <p id="conditions-wind-speed">3</p>
+            <abbr>m/s</abbr>
+          </div>
+        </div>
+      </div>
+
+      <div class="content__chart-section">
+        <p>Forecast</p>
+
+        <div class="rectangle">
+          <canvas id="temperatureChart" width="800" height="400"></canvas>
+          <p id="current-date"></p>
+        </div>
+      </div>
+    </main>
+
+    <footer class="page-footer">
+      <div class="page-footer">
+        <div class="page-footer__grid">
+          <!-- TODO: добавить значки -->
+          <div class="page-footer__powered">Powered by</div>
+
+          <div class="page-footer__logos">
+            <img
+              src="./assets/images/openweather-seeklogo.svg"
+              alt="openweather"
+              height="40px"
+            />
+          </div>
+          <div class="page-footer__editor">
+            Developed by Anton Sushkov <br />WeatherDataChart&copy; 2024
+          </div>
+
+          <div class="page-footer__links">
+            Follow us to <br />social media <br />links
+          </div>
+
+          <div class="page-footer__apps">
+            Apps <br />App fpr IOS <br />App for Android
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+
+  <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"
+  ></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script src="./js/bundle.js"></script>
+</html>
