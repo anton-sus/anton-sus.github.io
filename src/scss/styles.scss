@@ -106,14 +106,15 @@ button:hover {
     right: 0px;
     margin: 0 auto;
     padding: 12px;
-    transition: width 0.1s ease-in-out, background-color 0.5s ease-in-out; 
+    transition: width 0.1s ease-in-out, background-color 0.5s ease-in-out;
   }
 
   &__search-input:focus {
     outline-color: grey;
     background-color: rgb(255, 255, 255);
     width: 410px;
-}}
+  }
+}
 
 h2,
 h5 {
@@ -131,6 +132,12 @@ h5 {
   background-color: rgba(246, 246, 246, 15%);
   padding: 12px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+
+  &__attribute-text {
+    text-shadow: #000000;
+    color: #666666;
+    font-size: 12px;
+  }
 }
 
 /* Main content */

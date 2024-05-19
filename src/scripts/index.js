@@ -242,11 +242,9 @@ function setCurrentDate() {
   const currentDate = new Date();
 
   const formattedDate = currentDate.toLocaleDateString("en-US", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
+    hour:"2-digit",
+    minute: "2-digit"
   });
 
-  currentDateElement.textContent = formattedDate;
+  currentDateElement.textContent = "Updated at "+ formattedDate;
 }
