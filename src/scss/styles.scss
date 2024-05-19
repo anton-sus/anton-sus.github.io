@@ -31,7 +31,7 @@ button {
   font-size: 18px;
   background: #000000;
   padding: 8px 16px 8px 16px;
-  // mix-blend-mode: color-dodge;
+  width: 100px;
 }
 
 button:hover {
@@ -96,8 +96,9 @@ button:hover {
   &__search-input {
     display: none;
     color: grey;
+    background-color: grey;
     height: 36px;
-    min-width: 400px;
+    width: 100px;
     border: 2px solid grey;
     border-radius: 1em;
     position: absolute;
@@ -105,13 +106,14 @@ button:hover {
     right: 0px;
     margin: 0 auto;
     padding: 12px;
-    opacity: 0; 
-    transition: opacity 0.1s ease-in-out; 
+    transition: width 0.1s ease-in-out, background-color 0.5s ease-in-out;
   }
 
   &__search-input:focus {
     outline-color: grey;
-    opacity: 1;
+    background-color: rgb(255, 255, 255);
+    width: 410px;
+  }
 }
 
 h2,
@@ -126,9 +128,16 @@ h5 {
   text-align: left;
   padding: 0px;
   margin: 0 auto;
-  color: lightgray;
+  color: rgb(211, 211, 211);
   background-color: rgba(246, 246, 246, 15%);
   padding: 12px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+
+  &__attribute-text {
+    text-shadow: #000000;
+    color: #666666;
+    font-size: 12px;
+  }
 }
 
 /* Main content */
@@ -205,7 +214,7 @@ h5 {
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr) repeat(2, 15%);
+    grid-template-columns: repeat(2, 2fr) repeat(1, 17%);
     grid-template-rows: 16px repeat(2, 1fr);
     grid-gap: 12px;
     grid-template-areas:
