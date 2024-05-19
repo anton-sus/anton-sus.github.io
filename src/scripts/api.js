@@ -3,7 +3,7 @@ const limit = 1; // количество найденных городов
 
 // координаты города
 function fetchCityData(cityName) {
-  let getCoordsUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=${limit}&appid=${apiKey}`;
+  let getCoordsUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=${limit}&appid=${apiKey}`;
   return fetch(getCoordsUrl)
     .then((response) => response.json())
     .then((data) => {
@@ -35,7 +35,7 @@ function fetchWeatherData(lat, lon) {
 
 // прогноз
 function fetchForecastData(lat, lon) {
-  const url = `http://api.openweathermap.org/data/2.5/forecast?units=metric&lat=${lat}&lon=${lon}&appid=${apiKey}`;
+  const url = `https://api.openweathermap.org/data/2.5/forecast?units=metric&lat=${lat}&lon=${lon}&appid=${apiKey}`;
   return fetch(url)
     .then((response) => response.json())
     .then((data) => {
