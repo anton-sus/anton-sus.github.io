@@ -17,7 +17,7 @@ section {
 }
 
 header {
-  margin: 12px;
+  margin: 32px 0px;
 }
 
 button:hover {
@@ -38,9 +38,6 @@ button:hover {
   background: #666666;
 }
 
-.main_background {
-  // padding: auto;
-}
 
 .background_gradient {
   margin: 0;
@@ -66,6 +63,7 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 
   &__logo-text {
     width: fit-content;
@@ -112,7 +110,7 @@ button:hover {
   &__search-input:focus {
     outline-color: grey;
     background-color: rgb(255, 255, 255);
-    width: 410px;
+    width: 330px;
   }
 }
 
@@ -129,7 +127,7 @@ h5 {
   padding: 0px;
   margin: 0 auto;
   color: rgb(211, 211, 211);
-  background-color: rgba(246, 246, 246, 15%);
+  background-color: rgba(246, 246, 246, 25%);
   padding: 12px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
 
@@ -157,7 +155,7 @@ h5 {
 .conditions {
   display: flex;
   align-items: baseline;
-  gap: 24px;
+  gap: 14px;
   margin: 0px;
   padding-left: 20px;
 
@@ -196,16 +194,6 @@ h5 {
   }
 }
 
-// Charts. From https://chartscss.org/charts/line/
-#line-example-15 {
-  width: 100%;
-  max-width: 450px;
-  margin: auto;
-}
-#line-example-15 .line {
-  --aspect-ratio: 20 / 9;
-}
-
 /* Page footer */
 .page-footer {
   margin: 12px;
@@ -214,6 +202,7 @@ h5 {
 
   &__grid {
     display: grid;
+    color: #ffffff;
     grid-template-columns: repeat(2, 2fr) repeat(1, 17%);
     grid-template-rows: 16px repeat(2, 1fr);
     grid-gap: 12px;
