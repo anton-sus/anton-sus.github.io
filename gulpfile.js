@@ -66,7 +66,7 @@ function buildHtml() {
 
 // Копирование статики
 function copyAssets() {
-  return src(PATHS.images)
+  return src(PATHS.images, { encoding: false })
     .pipe(dest(`${PATHS.dist}/assets`));
 }
 
