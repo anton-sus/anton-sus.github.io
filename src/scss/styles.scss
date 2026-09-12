@@ -1,13 +1,29 @@
 @import "./medias.scss";
 @import "./variables.scss";
 
-/* Common */
-* {
+/* Minimal reset (replaces normalize.css CDN) */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
+body {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+button {
+  font: inherit;
+}
+
 .font-rubik {
-  font-family: "Rubik", sans-serif;
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
 }

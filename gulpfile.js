@@ -18,7 +18,8 @@ const PATHS = {
   js: `${SRC}/scripts/**/*.js`,
   ts: `${SRC}/scripts/**/*.ts`,
   html: `${SRC}/**/*.html`,
-  images: `${SRC}/assets/**/*.*`
+  images: `${SRC}/assets/**/*.*`,
+  chartJs: 'node_modules/chart.js/dist/chart.umd.min.js'
 };
 
 // Компиляция SASS
@@ -35,8 +36,15 @@ function buildSass() {
 // Сборка JavaScript
 function buildJs() {
   return src(PATHS.js)
-    .pipe(concat('app.js'))
+    .pipe(concat('bundle.js'))
     .pipe(uglify())
+    .pipe(dest(`${PATHS.dist}/js`))
+    .pipe(browserSync.stream());
+}
+
+// Копирование Chart.js (локально, без CDN)
+function copyVendorJs() {
+  return src(PATHS.chartJs)
     .pipe(dest(`${PATHS.dist}/js`))
     .pipe(browserSync.stream());
 }
@@ -90,12 +98,12 @@ function serve() {
 // Production сборка
 exports.build = series(
   cleanDist,
-  parallel(buildSass, buildJs, buildTs, buildHtml, copyAssets)
+  parallel(buildSass, buildJs, buildTs, buildHtml, copyAssets, copyVendorJs)
 );
 
 // Dev сервер
 exports.default = series(
   cleanDist,
-  parallel(buildSass, buildJs, buildTs, buildHtml, copyAssets),
+  parallel(buildSass, buildJs, buildTs, buildHtml, copyAssets, copyVendorJs),
   serve
 );

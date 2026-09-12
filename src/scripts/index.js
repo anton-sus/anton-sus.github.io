@@ -224,8 +224,11 @@ function getDataForChart(jsonData) {
   const pressures = [];
 
   weatherList.forEach((weather) => {
-    const date = moment(weather.dt_txt, "YYYY-MM-DD HH:mm:ss");
-    const formattedDate = date.format("DD MMM");
+    const date = new Date(weather.dt_txt.replace(" ", "T"));
+    const formattedDate = date.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "short",
+    });
 
     const temperature = weather.main.temp;
     const pressure = weather.main.pressure;
