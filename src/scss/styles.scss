@@ -1,13 +1,28 @@
 @import "./medias.scss";
 @import "./variables.scss";
 
-/* Common */
-* {
+/* Minimal reset (replaces normalize.css CDN) */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
+body {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+button {
+  font: inherit;
+}
+
 .font-rubik {
-  font-family: "Rubik", sans-serif;
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
 }
@@ -17,7 +32,7 @@ section {
 }
 
 header {
-  margin: 12px;
+  margin: 32px 0px;
 }
 
 button:hover {
@@ -38,9 +53,6 @@ button:hover {
   background: #666666;
 }
 
-.main_background {
-  // padding: auto;
-}
 
 .background_gradient {
   margin: 0;
@@ -66,6 +78,7 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 
   &__logo-text {
     width: fit-content;
@@ -81,10 +94,11 @@ button:hover {
 
   &__navigation {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    gap: 12px;
     position: relative;
+    min-width: 100px;
+    min-height: 40px;
   }
 
   &__place {
@@ -93,26 +107,58 @@ button:hover {
     align-items: center;
   }
 
-  &__search-input {
-    display: none;
-    color: grey;
-    background-color: grey;
-    height: 36px;
-    width: 100px;
-    border: 2px solid grey;
-    border-radius: 1em;
+  &__search-field {
+    display: flex;
+    align-items: center;
     position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: min(330px, 70vw);
+    height: 40px;
+    background-color: #fff;
+    border: 2px solid #666;
+    border-radius: 1em;
+    padding: 0 4px 0 12px;
     z-index: 10;
-    right: 0px;
-    margin: 0 auto;
-    padding: 12px;
-    transition: width 0.1s ease-in-out, background-color 0.5s ease-in-out;
+    box-sizing: border-box;
   }
 
-  &__search-input:focus {
-    outline-color: grey;
-    background-color: rgb(255, 255, 255);
-    width: 410px;
+  &__search-field[hidden] {
+    display: none;
+  }
+
+  &__search-input {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    border: none;
+    background: transparent;
+    color: #333;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    font: inherit;
+  }
+
+  &__search-icon {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    color: #888;
+    cursor: pointer;
+  }
+
+  &__search-icon:hover {
+    background: transparent;
+    color: #333;
   }
 }
 
@@ -129,7 +175,7 @@ h5 {
   padding: 0px;
   margin: 0 auto;
   color: rgb(211, 211, 211);
-  background-color: rgba(246, 246, 246, 15%);
+  background-color: rgba(246, 246, 246, 25%);
   padding: 12px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
 
@@ -157,7 +203,7 @@ h5 {
 .conditions {
   display: flex;
   align-items: baseline;
-  gap: 24px;
+  gap: 14px;
   margin: 0px;
   padding-left: 20px;
 
@@ -196,16 +242,6 @@ h5 {
   }
 }
 
-// Charts. From https://chartscss.org/charts/line/
-#line-example-15 {
-  width: 100%;
-  max-width: 450px;
-  margin: auto;
-}
-#line-example-15 .line {
-  --aspect-ratio: 20 / 9;
-}
-
 /* Page footer */
 .page-footer {
   margin: 12px;
@@ -214,6 +250,7 @@ h5 {
 
   &__grid {
     display: grid;
+    color: #ffffff;
     grid-template-columns: repeat(2, 2fr) repeat(1, 17%);
     grid-template-rows: 16px repeat(2, 1fr);
     grid-gap: 12px;

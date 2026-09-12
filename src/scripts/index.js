@@ -1,5 +1,7 @@
 let searchInput = document.getElementById("search-input");
 let searchButton = document.getElementById("search-button");
+let searchField = document.getElementById("search-field");
+let searchSubmit = document.getElementById("search-submit");
 
 let cityTitle = document.getElementById("city-title");
 let cityInfo = document.getElementById("city-info");
@@ -13,43 +15,63 @@ let temperatureChartInstance;
 let latitude;
 let longitude;
 let jsonWheatherData;
+let cityName = "";
 
 // TODO: restore from storage
 const defaultCity = "London";
 getDataForCity(defaultCity);
 
+function openSearch() {
+  searchButton.hidden = true;
+  searchField.hidden = false;
+  searchInput.value = "";
+  searchInput.focus();
+}
+
+function closeSearch() {
+  searchField.hidden = true;
+  searchButton.hidden = false;
+}
+
+function submitSearch() {
+  const value = searchInput.value.trim();
+  if (!value) {
+    return;
+  }
+  cityName = value;
+  getDataForCity(cityName);
+  closeSearch();
+}
+
 document.addEventListener("DOMContentLoaded", function () {
-  searchInput.style.display = "none";
-  // показ-скрытие поля searchInput
-  searchButton.addEventListener("click", function () {
-    if (searchInput.style.display === "none") {
-      searchInput.style.display = "block";
-
-      // очисить поле
-      searchInput.value = null;
-      searchInput.focus();
-    } else {
-      searchInput.style.display = "none";
-    }
+  searchButton.addEventListener("click", function (event) {
+    event.stopPropagation();
+    openSearch();
   });
 
-  // скрытие по клику вне поля ввода и кнопки Search
+  searchSubmit.addEventListener("click", function (event) {
+    event.stopPropagation();
+    submitSearch();
+  });
+
   document.addEventListener("click", function (event) {
+    if (searchField.hidden) {
+      return;
+    }
     if (
-      !searchInput.contains(event.target) &&
-      event.target.id !== "search-button"
+      !searchField.contains(event.target) &&
+      event.target !== searchButton
     ) {
-      searchInput.style.display = "none";
+      closeSearch();
     }
   });
 
-  // обработка события для получение значения из searchInput, поиск координат, запрос weatherData
   searchInput.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
-      cityName = searchInput.value;
-      console.log(cityName);
-
-      getDataForCity(cityName);
+      submitSearch();
+    }
+    if (event.key === "Escape") {
+      closeSearch();
     }
   });
 });
@@ -66,7 +88,7 @@ function getDataForCity(cityName) {
       cityTitle.innerHTML = cityData.name;
       cityInfo.innerHTML = cityDescription;
 
-      searchInput.style.display = "none";
+      closeSearch();
       return fetchWeatherData(cityData.lat, cityData.lon);
     })
     .then((wData) => {
@@ -224,8 +246,11 @@ function getDataForChart(jsonData) {
   const pressures = [];
 
   weatherList.forEach((weather) => {
-    const date = moment(weather.dt_txt, "YYYY-MM-DD HH:mm:ss");
-    const formattedDate = date.format("DD MMM");
+    const date = new Date(weather.dt_txt.replace(" ", "T"));
+    const formattedDate = date.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "short",
+    });
 
     const temperature = weather.main.temp;
     const pressure = weather.main.pressure;
