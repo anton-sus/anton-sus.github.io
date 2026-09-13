@@ -29,6 +29,7 @@ function buildSass() {
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss([autoprefixer(), cssnano()]))
     .pipe(sourcemaps.write('.'))
+    .pipe(dest(`${PATHS.src}/css`))
     .pipe(dest(`${PATHS.dist}/css`))
     .pipe(browserSync.stream());
 }
@@ -38,6 +39,7 @@ function buildJs() {
   return src(PATHS.js)
     .pipe(concat('bundle.js'))
     .pipe(uglify())
+    .pipe(dest(`${PATHS.src}/js`))
     .pipe(dest(`${PATHS.dist}/js`))
     .pipe(browserSync.stream());
 }
@@ -45,6 +47,7 @@ function buildJs() {
 // Копирование Chart.js (локально, без CDN)
 function copyVendorJs() {
   return src(PATHS.chartJs)
+    .pipe(dest(`${PATHS.src}/js`))
     .pipe(dest(`${PATHS.dist}/js`))
     .pipe(browserSync.stream());
 }
@@ -96,6 +99,9 @@ function serve() {
 }
 
 // Production сборка
+exports.buildSass = buildSass;
+exports.buildJs = buildJs;
+exports.copyVendorJs = copyVendorJs;
 exports.build = series(
   cleanDist,
   parallel(buildSass, buildJs, buildTs, buildHtml, copyAssets, copyVendorJs)
